@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Kotlin Repositories Github</string>
+    <string name="home_title_top_stars_kotlin_repositories">Top Stars Kotlin Repositories</string>
 </resources>
