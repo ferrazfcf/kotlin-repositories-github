@@ -8,8 +8,8 @@ import com.squareup.moshi.Moshi
 import okio.IOException
 import retrofit2.HttpException
 
-object ApiCallHelper {
-    suspend fun <ResponseType> safeApiCall(apiCall: suspend () -> ResponseType) : ResultWrapper<ResponseType> =
+object ApiHelper {
+    suspend fun <ResponseType> responseHandler(apiCall: suspend () -> ResponseType) : ResultWrapper<ResponseType> =
         kotlin.runCatching {
             ResultWrapper.Success(apiCall())
         }.getOrElse { throwable ->

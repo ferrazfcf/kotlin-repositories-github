@@ -37,7 +37,7 @@ class RepositoriesViewModel(
 
     private fun getTopStarKotlinGitHubRepositories() {
         viewModelScope.launch {
-            getTopStarKotlinGitHubRepositoriesUseCase().collect {
+            getTopStarKotlinGitHubRepositoriesUseCase(1, 10).collect {
                 handleRepositoriesListResource(it)
             }
         }

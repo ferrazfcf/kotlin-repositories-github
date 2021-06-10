@@ -16,10 +16,10 @@ class HomeActivity : AppCompatActivity() {
 
     @KoinExperimentalAPI
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(binding.root)
-
         setupKoinFragmentFactory()
+        super.onCreate(savedInstanceState)
+
+        setContentView(binding.root)
 
         supportFragmentManager.beginTransaction()
             .replace<RepositoriesFragment>(binding.homeRepositoriesListContainer.id)

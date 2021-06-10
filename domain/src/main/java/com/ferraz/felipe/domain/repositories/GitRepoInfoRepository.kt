@@ -6,5 +6,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface GitRepoInfoRepository {
 
-    fun getTopStarKotlinGitHubRepositories() : Flow<ResultWrapper<GitHubRepositories>>
+    fun getGitHubRepositories(queryMap: HashMap<String, String>) : Flow<ResultWrapper<GitHubRepositories>>
 }
