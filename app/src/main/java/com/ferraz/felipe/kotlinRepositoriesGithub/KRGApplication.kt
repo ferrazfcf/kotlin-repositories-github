@@ -1,6 +1,8 @@
 package com.ferraz.felipe.kotlinRepositoriesGithub
 
 import android.app.Application
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
 import com.ferraz.felipe.data.di.gitHubRepoInfoRepositoryModule
 import com.ferraz.felipe.kotlinRepositoriesGithub.di.repositoriesPresentation
 import com.ferraz.felipe.data.di.gitHubServiceModule
@@ -17,6 +19,8 @@ class KRGApplication : Application() {
     @KoinExperimentalAPI
     override fun onCreate() {
         super.onCreate()
+
+        AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_FOLLOW_SYSTEM)
 
         startKoin {
             androidLogger()
