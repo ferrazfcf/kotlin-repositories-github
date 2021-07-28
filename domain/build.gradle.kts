@@ -10,5 +10,4 @@ dependencies {
     //Coroutines
     val coroutinesVersion = "1.5.0"
     api("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
-
 }
