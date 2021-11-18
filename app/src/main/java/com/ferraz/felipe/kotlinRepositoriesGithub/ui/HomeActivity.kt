@@ -1,29 +1,30 @@
 package com.ferraz.felipe.kotlinRepositoriesGithub.ui
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import android.util.Log
 import com.ferraz.felipe.kotlinRepositoriesGithub.databinding.HomeActivityBinding
 import com.ferraz.felipe.kotlinRepositoriesGithub.ui.repositoriesList.RepositoriesFragment
 import org.koin.androidx.fragment.android.replace
 import org.koin.androidx.fragment.android.setupKoinFragmentFactory
-import org.koin.core.KoinExperimentalAPI
+import org.koin.androidx.scope.ScopeActivity
 
-class HomeActivity : AppCompatActivity() {
+class HomeActivity : ScopeActivity() {
 
     private val binding: HomeActivityBinding by lazy {
         HomeActivityBinding.inflate(layoutInflater)
     }
 
-    @KoinExperimentalAPI
     override fun onCreate(savedInstanceState: Bundle?) {
-        setupKoinFragmentFactory()
+        setupKoinFragmentFactory(scope)
         super.onCreate(savedInstanceState)
-
+        Log.d("FCF1101", "Activity")
         setContentView(binding.root)
 
-        supportFragmentManager.beginTransaction()
-            .replace<RepositoriesFragment>(binding.homeRepositoriesListContainer.id)
-            .commit()
+        if(savedInstanceState == null) {
+            supportFragmentManager.beginTransaction()
+                .replace<RepositoriesFragment>(binding.homeRepositoriesListContainer.id)
+                .commitAllowingStateLoss()
+        }
     }
 }
 

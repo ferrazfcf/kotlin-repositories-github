@@ -4,13 +4,13 @@ plugins {
 }
 
 android {
-    compileSdk = 30
-    buildToolsVersion = "30.0.3"
+    compileSdk = 31
+    buildToolsVersion = "31.0.0"
 
     defaultConfig {
         applicationId = "com.ferraz.felipe.kotlinRepositoriesGithub"
         minSdk = 26
-        targetSdk = 30
+        targetSdk = 31
         versionCode = 1
         versionName = "1.0"
 
@@ -35,7 +35,7 @@ android {
         targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = JavaVersion.VERSION_11.toString()
     }
 }
 
@@ -50,24 +50,32 @@ dependencies {
     //Kotlin
     val kotlinVersion: String by rootProject.extra
     implementation("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")
+
     //AndroidX
-    implementation("androidx.core:core-ktx:1.6.0")
-    implementation("androidx.appcompat:appcompat:1.3.1")
-    implementation("androidx.constraintlayout:constraintlayout:2.0.4")
-    val lifecycleVersion = "2.3.1"
+    val coreKtxVersion: String by rootProject.extra
+    implementation("androidx.core:core-ktx:$coreKtxVersion")
+    val appCompatVersion: String by rootProject.extra
+    implementation("androidx.appcompat:appcompat:$appCompatVersion")
+    val constraintLayoutVersion: String by rootProject.extra
+    implementation("androidx.constraintlayout:constraintlayout:$constraintLayoutVersion")
+    val lifecycleVersion: String by rootProject.extra
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion")
+
     //Koin
-    val koinVersion = "3.0.2"
+    val koinVersion: String by rootProject.extra
     implementation("io.insert-koin:koin-android:$koinVersion")
+
     //Material
-    implementation("com.google.android.material:material:1.4.0")
+    val materialVersion: String by rootProject.extra
+    implementation("com.google.android.material:material:$materialVersion")
     /*endregion*/
 
     /*region Test Dependencies*/
     //Junit
     testImplementation("junit:junit:4.13.2")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.2")
     //Android Junit
     androidTestImplementation("androidx.test.ext:junit:1.1.3")
     //Espresso

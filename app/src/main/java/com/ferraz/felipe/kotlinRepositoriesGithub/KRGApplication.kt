@@ -11,12 +11,10 @@ import com.ferraz.felipe.kotlinRepositoriesGithub.di.getTopStarKotlinGitHubRepos
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.androidx.fragment.koin.fragmentFactory
-import org.koin.core.KoinExperimentalAPI
 import org.koin.core.context.startKoin
 
 class KRGApplication : Application() {
 
-    @KoinExperimentalAPI
     override fun onCreate() {
         super.onCreate()
 
