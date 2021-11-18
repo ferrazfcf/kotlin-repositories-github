@@ -3,10 +3,11 @@ package com.ferraz.felipe.kotlinRepositoriesGithub
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.*
+import org.junit.rules.TestWatcher
 import org.junit.runner.Description
 
 @ExperimentalCoroutinesApi
-class CoroutineWithRetryRule(retryMax: Int = 1) : RetryRule(retryMax) {
+class CoroutineRule : TestWatcher() {
     private val testCoroutineDispatcher = TestCoroutineDispatcher()
     private val testCoroutineScope = TestCoroutineScope(testCoroutineDispatcher)
 

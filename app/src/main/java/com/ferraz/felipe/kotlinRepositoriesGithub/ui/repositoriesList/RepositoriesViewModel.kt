@@ -6,7 +6,6 @@ import com.ferraz.felipe.domain.entities.GitHubRepositories
 import com.ferraz.felipe.domain.entities.GitRepositoryInfo
 import com.ferraz.felipe.domain.usecases.GetTopStarKotlinGitHubRepositoriesUseCase
 import com.ferraz.felipe.domain.utils.ResultWrapper
-import com.ferraz.felipe.kotlinRepositoriesGithub.utils.Event
 import com.ferraz.felipe.kotlinRepositoriesGithub.utils.LoadingState
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.collect
@@ -21,22 +20,17 @@ class RepositoriesViewModel(
     val repositoriesList: LiveData<GitRepositoryInfo>
         get() = _repositoriesList
 
-    private var _loadingState = MutableLiveData<Event<LoadingState>>()
-    val loadingState: LiveData<Event<LoadingState>>
-        get() = _loadingState
+    private var _loadingState = Channel<LoadingState>()
+    val loadingState: LiveData<LoadingState>
+        get() = _loadingState.receiveAsFlow().asLiveData()
 
     private var _errorState = Channel<Throwable>()
     val errorState: LiveData<Throwable>
         get() = _errorState.receiveAsFlow().asLiveData()
 
     init {
-        Log.d("FCF1101", "ViewModel")
-        _loadingState.value = Event(LoadingState.FIRST_PAGE)
+        sendLoadingState(LoadingState.FIRST_PAGE)
         getTopStarKotlinGitHubRepositories()
-    }
-
-    fun buttonClicked() {
-        sendErrorState(Throwable("ERROR"))
     }
 
     private fun getTopStarKotlinGitHubRepositories() {
@@ -54,6 +48,12 @@ class RepositoriesViewModel(
     private fun sendErrorState(error: Throwable) {
         viewModelScope.launch {
             _errorState.send(error)
+        }
+    }
+
+    private fun sendLoadingState(state: LoadingState) {
+        viewModelScope.launch {
+            _loadingState.send(state)
         }
     }
 }

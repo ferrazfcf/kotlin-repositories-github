@@ -12,7 +12,7 @@ import org.junit.Rule
  */
 class ExampleUnitTest {
     @get:Rule
-    val coroutineWithRetryRule = CoroutineWithRetryRule(3)
+    val retryRule = RetryRule(3)
 
     @Test
     fun addition_isCorrect() {

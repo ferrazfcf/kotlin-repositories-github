@@ -30,7 +30,6 @@ class RepositoriesFragment : Fragment() {
         Log.d("FCF1101", "Fragment")
 
         repositoriesViewModel.initializeObserver()
-        binding.initializeLayout()
 
         return binding.root
     }
@@ -38,12 +37,6 @@ class RepositoriesFragment : Fragment() {
     override fun onDestroyView() {
         _binding = null
         super.onDestroyView()
-    }
-
-    private fun RepositoriesFragmentBinding.initializeLayout() {
-        button.setOnClickListener {
-            repositoriesViewModel.buttonClicked()
-        }
     }
 
     private fun RepositoriesViewModel.initializeObserver() {
